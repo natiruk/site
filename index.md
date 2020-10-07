@@ -14,7 +14,7 @@ function calculator() {
 }
 </script>
 <style>
-  input {background: #8cf;}
+  input {background-color: #8cf;}
 </style>
 
 <!--textarea rows="1" id="expression"> </textarea-->
