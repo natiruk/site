@@ -4,6 +4,7 @@
 <script>//alert('Welcome');</script> 
 
 But, what did you expect
+
 <script>
 function calculator() {
   var expression = document.getElementById("expression").value;
@@ -14,6 +15,8 @@ function calculator() {
 </script>
 <style>
   input {background: #8cf;}
+</style>
+
 <!--textarea rows="1" id="expression"> </textarea-->
 <input size="18" id="expression" />
 <button id="calculator" value="Eval" onclick="calculator();">Eval</button>
