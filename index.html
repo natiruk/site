@@ -1,0 +1,45 @@
+<html>
+<head><title>home</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link rel="shortcut icon" href="favicon.png">
+<style> 
+body {
+  margin:40px auto; 
+  padding:0 10px;
+  max-width:650px; 
+  line-height:1.6;
+  font-size:18px; 
+  color:#444; 
+  background-color:#edb;
+}
+h1,h2,h3 {line-height:1.2}
+</style>
+</head>
+
+<body>
+# My site
+
+## Nothing here so far
+<script>//alert('Welcome');</script> 
+
+But, what did you expect
+
+<script>
+function calculator() {
+  var expression = document.getElementById("expression").value;
+  var result = document.getElementById("result");
+  try { result.value = eval("with(Math){" + expression + "}"); }
+  catch (e) { alert(e) }
+}
+</script>
+<style>
+  input {background-color: #8cf;}
+</style>
+
+<input size="18" id="expression" />
+<button id="calculator" value="Eval" onclick="calculator();">Eval</button>
+<input size="18" id="result" readonly/>
+
+
+</body>
+</html>
