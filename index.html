@@ -13,16 +13,18 @@ body {
   background-color:#edb;
 }
 h1,h2,h3 {line-height:1.2}
+h1 {color:lime;}  
+#expression {background-color: #cef;}
+#result {background-color: #fec;}
 </style>
 </head>
 
 <body>
-# My site
+<h1>My site</h1>
 
-## Nothing here so far
-<script>//alert('Welcome');</script> 
+<p>Nothing here so far</p>
 
-But, what did you expect
+<p>But, what did you expect</p>
 
 <script>
 function calculator() {
@@ -33,9 +35,9 @@ function calculator() {
 }
 </script>
 <style>
-  input {background-color: #8cf;}
-</style>
 
+</style>
+<p>
 <input size="18" id="expression" />
 <button id="calculator" value="Eval" onclick="calculator();">Eval</button>
 <input size="18" id="result" readonly/>
