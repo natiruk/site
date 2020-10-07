@@ -1,32 +1,68 @@
 <html>
-<head><title>My site</title>
+<head><title>My home page</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-<link rel="shortcut icon" href="favicon.png">
+<!--link rel="shortcut icon" href="favicon.png"-->
 <style> 
 body {
   margin:40px auto; 
   padding:0 10px;
-  max-width:650px; 
+  max-width:800px; 
   line-height:1.6;
   font-size:18px; 
   color:#444; 
-  background-color:#edb;
+  background-color:#f4f0e8;
 }
+
 h1,h2,h3 {line-height:1.2}
-h1 {color:lime;}  
-#expression {background-color: #cef;}
-#result {background-color: #fec;}
+
+h1 {text-align: center; color:#557744;}  
+
+div#calculator {
+  display: inline-flex; flex-flow: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 40%;
+  height: 120px;
+  border-radius: 8px;
+  border: 1px solid #8cf;
+  background-color: #c0fff0;
+}
+
+div#temperature {
+  display: inline-flex; flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-around;
+  width: 40%;
+  height: 80px;
+  border-radius: 8px;
+  border: 1px solid #fc8;
+  background-color: #fff0c0;
+}
+
+div#temperature div {width:4em;}
+
+.err {background-color: #fa8;}
+.ok  {background-color: #dfa;}
+
+#expression {background-color: #f0ffe0;}
+#result {background-color: #e0fff0;}
+
+
 </style>
 </head>
 
 <body>
-<h1>My site</h1>
+<h1>My home page</h1>
 
+<hr>
 <p>Nothing here so far</p>
 
 <p>But, what did you expect</p>
-<!--iframe src="http://free.timeanddate.com/clock/i7a9jt4n/n867/szw110/szh110/hoc000/hbw2/hfceee/cf100/hncccc/fdi76/mqc000/mql10/mqw4/mqd98/mhc000/mhl10/mhw4/mhd98/mmc000/mml10/mmw1/mmd98" /-->  
 
+<hr>
+
+<div id="calculator">
 <script>
 function calculator() {
   var expression = document.getElementById("expression").value;
@@ -35,12 +71,53 @@ function calculator() {
   catch (e) { alert(e) }
 }
 </script>
+Simple calculator
+<input size="32" id="expression"
+  onchange="calculator();" 
+  title="Input math expression, you can use functions like sin(), atan() etc., ex. pow(cos(atan(1))*2, 2)"/>
+<button id="calculate" value="Eval" onclick="calculator();">Eval</button>
+<span>Result: <input size="19" id="result" readonly /></span>
+</div>
 
-<p>
-<input size="32" id="expression" />
-<button id="calculator" value="Eval" onclick="calculator();">Eval</button>
-<input size="18" id="result" readonly />
+<hr>
 
+<div id="temperature">
+<script>
+function temperature(ev) {
+  var val = ev.target.value;
+  if (ev.target.id == 'fahrenheit') {
+    var result = document.getElementById("celsius");
+    var r = (val-32)*5/9;
+  } else {
+    var result = document.getElementById("fahrenheit");
+    var r = val*1.8+32;
+  }
+  result.value = r;
+  if (isNaN(r)) {
+    result.classList.remove("ok");
+    result.classList.add("err");
+  } else {
+    result.classList.remove("err");
+    result.classList.add("ok");
+  }
+}
+</script>
+<div>
+Fahrenheit
+<input size="8" class="ok" id="fahrenheit"
+  onchange="temperature(event);"
+  title="Enter temperature in Fahrenheit degrees"/>
+</div>
+<button id="Convert" value="Convert">Convert</button>
+<div>
+Celsius
+<input size="8" class="ok" id="celsius"
+  onchange="temperature(event);"
+  title="Enter temperature in Celsius degrees"/>
+</div>
+</div>
+
+<hr>
 
 </body>
 </html>
