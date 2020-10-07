@@ -1,6 +1,5 @@
 # site
 
 Nothing here so far
-<script>
-  alert('Welcome');
-</script>
+
+<https://natiruk.github.io/site/>
