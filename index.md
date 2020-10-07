@@ -12,10 +12,12 @@ function calculator() {
   catch (e) { alert(e) }
 }
 </script>
+<style>
+  input {background: #8cf;}
 <!--textarea rows="1" id="expression"> </textarea-->
-<input size="8" id="expression" />
+<input size="18" id="expression" />
 <button id="calculator" value="Eval" onclick="calculator();">Eval</button>
-<input id="result" readonly/>
+<input size="18" id="result" readonly/>
 
 
 
