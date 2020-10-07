@@ -13,8 +13,8 @@ function calculator() {
 }
 </script>
 <textarea rows="1" id="expression"> </textarea>
-<button id="calc" value="Eval" onclick="calculator();">Eval</button>
+<button id="calculator" value="Eval" onclick="calculator();">Eval</button>
 <input id="result" readonly/>
-</div>
+
 
 
