@@ -1,12 +1,13 @@
 <html>
 <head><title>My home page</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-<!--link rel="shortcut icon" href="favicon.png"-->
-<style>
+<link rel="shortcut icon" href="favicon.png">
+<style> 
 body {
   margin:40px auto; 
   padding:0 10px;
-  max-width:800px; 
+  width:80%; 
+  max-width:1080px; 
   line-height:1.6;
   font-size:18px; 
   color:#444; 
@@ -21,46 +22,83 @@ div#calculator {
   display: inline-flex; flex-flow: column;
   align-items: center;
   justify-content: space-around;
-  width: 40%;
+  _justify-content: space-evenly;
+  width: 16em;
   height: 120px;
+  height: 16ex;
   border-radius: 8px;
-  border: 1px solid #8cf;
+  border: 2px ridge #8cf;
   background-color: #c0fff0;
 }
+
+div#calculator #expression {background-color: #f0ffe0;}
+div#calculator #result {background-color: #e0fff0;}
 
 div#temperature {
   display: inline-flex; flex-flow: row;
   align-items: center;
-  justify-content: center;
+  _justify-content: space-evenly;
   justify-content: space-around;
-  width: 40%;
-  height: 80px;
+  width: 16em;
+  height: 10ex;
   border-radius: 8px;
-  border: 1px solid #fc8;
+  border: 2px ridge #fc8;
   background-color: #fff0c0;
 }
 
 div#temperature div {width:4em;}
 
-.err {background-color: #fa8;}
 .ok  {background-color: #dfa;}
+.ok  {background-color: #efc;}
 
-#expression {background-color: #f0ffe0;}
-#result {background-color: #e0fff0;}
 
+.err {
+  background-color: #fa8;
+  transition: background-color 0.3s;
+}
+
+
+#_0xco {display:flex; flex-flow: column;}
+#_0xco textarea  { border: 2px ridge;}
+#_0xco fieldset {
+  color: #044;
+  display:flex;
+  flex-flow: row wrap;
+  align-items: center;
+  align-content: space-around;
+  justify-content: space-around;
+}
+
+content {
+  display: flex; 
+  flex-flow: row wrap;
+  align-items: start;
+  align-content: space-around;
+  justify-content: space-around;
+}
+
+content > * {margin-top:1ex;}
+
+noscript.err{width:100%; text-align:center;}
 
 </style>
+
 </head>
 
 <body>
+
+
 <h1>My home page</h1>
 
 <hr>
 <p>Nothing here so far</p>
 
 <p>But, what did you expect</p>
-
 <hr>
+
+<content class="err">
+<noscript class="err"><h2>These tools require javascript</h2></noscript>
+<script>document.querySelector('content').classList.remove('err');</script>
 
 <div id="calculator">
 <script>
@@ -74,50 +112,72 @@ function calculator() {
 Simple calculator
 <input size="32" id="expression"
   onchange="calculator();" 
-  title="Input math expression, you can use functions like sin(), atan() etc., ex. pow(cos(atan(1))*2, 2)"/>
+  title="Input math expression, you can use sin(), atan(), PI etc., ex. pow(cos(atan(1))*2, 2)"/>
 <button id="calculate" value="Eval" onclick="calculator();">Eval</button>
-<span>Result: <input size="19" id="result" readonly /></span>
+<span>Result: <input size="22" id="result" readonly /></span>
 </div>
 
-<hr>
 
 <div id="temperature">
-<script>
-function temperature(ev) {
-  var val = ev.target.value;
-  if (ev.target.id == 'fahrenheit') {
-    var result = document.getElementById("celsius");
-    var r = (val-32)*5/9;
-  } else {
-    var result = document.getElementById("fahrenheit");
-    var r = val*1.8+32;
+  <script>
+  function temperature(ev) {
+    var val = ev.target.value;
+    if (ev.target.id == 'fahrenheit') {
+      var result = document.getElementById("celsius");
+      var r = (val-32)*5/9;
+    } else {
+      var result = document.getElementById("fahrenheit");
+      var r = val*1.8+32;
+    }
+    result.value = r;
+    ev.target.classList.toggle('err',isNaN(r));
+    result.classList.toggle('err',isNaN(r));
   }
-  result.value = r;
-  if (isNaN(r)) {
-    result.classList.remove("ok");
-    result.classList.add("err");
-  } else {
-    result.classList.remove("err");
-    result.classList.add("ok");
-  }
-}
-</script>
-<div>
-Fahrenheit
-<input size="8" class="ok" id="fahrenheit"
-  onchange="temperature(event);"
-  title="Enter temperature in Fahrenheit degrees"/>
-</div>
-<button id="Convert" value="Convert">Convert</button>
-<div>
-Celsius
-<input size="8" class="ok" id="celsius"
-  onchange="temperature(event);"
-  title="Enter temperature in Celsius degrees"/>
-</div>
+  </script>
+
+  <div>Fahrenheit
+  <input size="8" class="ok" id="fahrenheit"
+    onchange="temperature(event);"
+    title="Enter temperature in Fahrenheit degrees"/>
+  </div>
+  <button id="Convert" value="Convert">Convert</button>
+  <div>Celsius
+  <input size="8" class="ok" id="celsius"
+    onchange="temperature(event);"
+    title="Enter temperature in Celsius degrees"/>
+  </div>
 </div>
 
-<hr>
+<form action="https://0x.co/shorten.html" id="_0xco" method="post">
+  <span>Pastebin and url shortener <a href="http://0x.co"><b>0x.co:</b></a></span>
+  <textarea name="content" id="content" 
+            rows="8" cols="32" maxlength="4096"
+            title="Simple pastebin-like service, type a text up to 4096 characters long,
+choose expiration time and visibility below.
+It can also serve as URL shortener, type in an URL and check 'Redirect'."></textarea>
+  <fieldset class='small'>
+  <span><label for="redirect">Redirect</label><input type="checkbox" 
+               name="redirect" value="1"></span>
+  <span><label for="expiry">Expires:</label>
+  <select name="expiry">
+  <option value="0">Never</option>
+  <option value="10m" selected>10 Minutes</option>
+  <option value="1h">1 Hour</option>
+  <option value="1D">1 Day</option>
+  <option value="1W">1 Week</option>
+  <option value="1M">1 Month</option>
+  <option value="1Y">1 Year</option>
+  </select></span>
+  <span><label for="visibility">Visibility:</label>
+  <select name="visibility">
+  <option value="1">Searchable</option>
+  <option value="0" selected>Private</option>
+  </select></span>
+  </fieldset>
+
+  <input type='submit' name='shorten' value='Submit' title="Submit to 0x.co">
+</form>
+</content>
 
 </body>
 </html>
